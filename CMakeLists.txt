@@ -1,7 +1,4 @@
-# vim: et ts=4 sts=4 sw=4 tw=0
-
-# ==== Define cmake build policies that affect compilation and linkage default behaviors
-#
+# ==== Define cmake build policies that affect compilation and linkage default behaviors #
 # Set the JSONCPP_NEWEST_VALIDATED_POLICIES_VERSION string to the newest cmake version
 # policies that provide successful builds. By setting JSONCPP_NEWEST_VALIDATED_POLICIES_VERSION
 # to a value greater than the oldest policies, all policies between
@@ -12,6 +9,14 @@
 # CMake versions greater than the JSONCPP_NEWEST_VALIDATED_POLICIES_VERSION policies will
 # continue to generate policy warnings "CMake Warning (dev)...Policy CMP0XXX is not set:"
 #
+
+###############
+# ASI default settings
+list(APPEND CMAKE_MODULE_PATH "$ENV{ASV_CMAKE}")
+include(asv_cmake_defaults)
+asv_cmake_defaults( )
+###############
+
 set(JSONCPP_OLDEST_VALIDATED_POLICIES_VERSION "3.8.0")
 set(JSONCPP_NEWEST_VALIDATED_POLICIES_VERSION "3.13.2")
 cmake_minimum_required(VERSION ${JSONCPP_OLDEST_VALIDATED_POLICIES_VERSION})
@@ -69,13 +74,13 @@ project(JSONCPP
 message(STATUS "JsonCpp Version: ${JSONCPP_VERSION_MAJOR}.${JSONCPP_VERSION_MINOR}.${JSONCPP_VERSION_PATCH}")
 set( JSONCPP_SOVERSION 21 )
 
-option(JSONCPP_WITH_TESTS "Compile and (for jsoncpp_check) run JsonCpp test executables" ON)
-option(JSONCPP_WITH_POST_BUILD_UNITTEST "Automatically run unit-tests as a post build step" ON)
+option(JSONCPP_WITH_TESTS "Compile and (for jsoncpp_check) run JsonCpp test executables" OFF)
+option(JSONCPP_WITH_POST_BUILD_UNITTEST "Automatically run unit-tests as a post build step" OFF)
 option(JSONCPP_WITH_WARNING_AS_ERROR "Force compilation to fail if a warning occurs" OFF)
 option(JSONCPP_WITH_STRICT_ISO "Issue all the warnings demanded by strict ISO C and ISO C++" ON)
 option(JSONCPP_WITH_PKGCONFIG_SUPPORT "Generate and install .pc files" ON)
 option(JSONCPP_WITH_CMAKE_PACKAGE "Generate and install cmake package files" ON)
-option(BUILD_SHARED_LIBS "Build jsoncpp_lib as a shared library." OFF)
+option(BUILD_SHARED_LIBS "Build jsoncpp_lib as a shared library." ON)
 
 # Enable runtime search path support for dynamic libraries on OSX
 if(APPLE)
