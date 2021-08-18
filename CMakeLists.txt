@@ -12,6 +12,7 @@
 # CMake versions greater than the JSONCPP_NEWEST_VALIDATED_POLICIES_VERSION policies will
 # continue to generate policy warnings "CMake Warning (dev)...Policy CMP0XXX is not set:"
 #
+
 set(JSONCPP_OLDEST_VALIDATED_POLICIES_VERSION "3.10.0")
 set(JSONCPP_NEWEST_VALIDATED_POLICIES_VERSION "3.13.2")
 cmake_minimum_required(VERSION ${JSONCPP_OLDEST_VALIDATED_POLICIES_VERSION})
@@ -59,6 +60,13 @@ project(jsoncpp
         # IMPORTANT: also update the PROJECT_SOVERSION!!
         VERSION 1.9.8 # <major>[.<minor>[.<patch>[.<tweak>]]]
         LANGUAGES CXX)
+
+###############
+# ASI default settings
+list(APPEND CMAKE_MODULE_PATH "$ENV{ASV_CMAKE}")
+include(asv_cmake_defaults)
+asv_cmake_defaults( )
+###############
 
 message(STATUS "JsonCpp Version: ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 set(PROJECT_SOVERSION 27)
